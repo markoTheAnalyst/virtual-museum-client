@@ -1,0 +1,66 @@
+<div class="container">
+    <form #bankForm="ngForm" (ngSubmit)="bankForm.form.valid && onSubmit(bankForm)">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input required type="text" class="form-control" name="name" id="name" placeholder="Enter your name" #name="ngModel" ngModel>
+            <div *ngIf="(name.touched || bankForm.submitted) && name.invalid" class="alert alert-danger">
+                <div *ngIf="name.errors?.['required']">Name field is required.</div>
+                <!-- <div *ngIf="name.errors.minlength">Name field should be at least {{ name.errors.minlength.requiredLength }} characters.</div> -->
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter your last name" ngModel>
+        </div>
+        <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" class="form-control" name="cardNumber" id="cardNumber" placeholder="Enter the card number" ngModel>
+        </div>
+        
+        <div class="form-group">
+            <label for="cardType">Card Type</label>
+            <select class="form-select" id="cardType" #cardType="ngModel" ngModel name="cardType" required>
+                <option>VISA</option>
+                <option>MASTERCARD</option>
+                <option selected='true'>AMERICAN EXPRESS</option>
+            </select>
+            <div *ngIf="(cardType.touched || bankForm.submitted) && cardType.invalid" class="alert alert-danger">
+                Category field is required.
+              </div>
+        </div>
+        <div class="form-group">
+            <label for="expirationDate">Expiration Date</label>
+            <input type="month" class="form-control" name="expirationDate" id="expirationDate" placeholder="Enter the expiration date" ngModel>
+        </div>
+        <div class="form-group">
+            <label for="pin">PIN</label>
+            <input type="text" class="form-control" name="pin" id="pin" placeholder="Enter the pin" ngModel>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<div class="container">
+    <form #reservationForm="ngForm" (ngSubmit)="reservationForm.form.valid && reservation(reservationForm.value)">
+    <label for="dates">Available Dates</label>
+    <div class="input-group">
+        <select class="form-control" id="tour" #tour="ngModel" ngModel name="tour" required>
+            <option *ngFor="let reservation of this.reservations" [value]="reservation.reservationId">
+                {{ reservation.startingTime | date: 'medium' }} | Duration: 
+                {{reservation.duration}} hour(s)
+            </option>
+        </select>            
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary">Choose</button>
+        </span>
+    </div>
+    </form>
+</div>
+{{ museum.country }}
+
+<app-weather></app-weather>
+<app-weather></app-weather>
+<app-weather></app-weather>
+
+<app-rss-feed></app-rss-feed>

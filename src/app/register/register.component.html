@@ -1,0 +1,81 @@
+<div class="container">
+    <form #registrationForm="ngForm" (ngSubmit)="registrationForm.form.valid && onSubmit(registrationForm)" >
+        <div class="mb-3">
+            <label for="name" class="col-sm-3 control-label">Name</label>
+            <div class="col-sm-9">
+                <input required type="text" id="name" name="name" placeholder="First Name" class="form-control" ngModel 
+                    #name="ngModel" pattern="^[A-Za-z]{3,}$">
+            </div>
+            <div *ngIf="(name.touched || registrationForm.submitted) && name.invalid" class="alert alert-danger col-sm-9">
+                <div *ngIf="name.errors?.['required']">Name field is required.</div>
+                <div *ngIf="name.errors?.['pattern']">Invalid name (min 3 letters).</div>
+                
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+            <div class="col-sm-9">
+                <input required type="text" id="lastName" name="lastName" placeholder="Last Name" class="form-control" ngModel
+                pattern="^[A-Za-z]{3,}$" #lastName="ngModel">
+            </div>
+            <div *ngIf="(lastName.touched || registrationForm.submitted) && lastName.invalid" class="alert alert-danger col-sm-9">
+                <div *ngIf="lastName.errors?.['required']">Last Name field is required.</div>
+                <div *ngIf="lastName.errors?.['pattern']">Invalid last name (min 3 letters).</div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="username" class="col-sm-3 control-label">Username</label>
+            <div class="col-sm-9">
+                <input required type="text" id="username" name="username" placeholder="Username" class="form-control" ngModel
+                  pattern="^[^@#\/]{12,}$" #username="ngModel">
+            </div>
+            <div *ngIf="(username.touched || registrationForm.submitted) && username.invalid" class="alert alert-danger col-sm-9">
+                <div *ngIf="username.errors?.['required']">Username field is required.</div>
+                <div *ngIf="username.errors?.['pattern']">Username must contain at least 12 characters (@,# and / are not allowed).</div>
+            </div>
+            <div *ngIf="show" class="alert alert-danger col-sm-9">Username already exists.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-9">
+                <input required type="email" pattern="^[A-Za-z0-9]+@.+$" id="email" name="email" placeholder="Email" class="form-control" ngModel #email="ngModel">
+            </div>
+            <div *ngIf="(email.touched || registrationForm.submitted) && email.invalid" class="alert alert-danger col-sm-9">
+                <div *ngIf="email.errors?.['required']">Email field is required.</div>
+                <div *ngIf="email.errors?.['pattern']">Invalid email.</div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="col-sm-3 control-label">Password</label>
+            <div class="col-sm-9">
+                <input required type="password" id="password" name="password" placeholder="Password" class="form-control" ngModel 
+                #password="ngModel" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{15,}$">
+            </div>
+            <div *ngIf="(password.touched || registrationForm.submitted) && password.invalid" class="alert alert-danger col-sm-9">
+                <div *ngIf="password.errors?.['required']">Passwords field is required.</div>
+                <div *ngIf="password.errors?.['pattern']">Password must contain an uppercase and lowercase letter and a number (min 15 characters).</div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="confirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+            <div class="col-sm-9">
+                <input required type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" class="form-control" ngModel #confirmPassword="ngModel">
+            </div>
+            <div *ngIf="(confirmPassword.touched || registrationForm.submitted)">
+                <div *ngIf="confirmPassword.errors?.['required']; else second" class="alert alert-danger col-sm-9">Confirm Password field is required.</div>
+                <ng-template  #second>
+                    <div *ngIf="confirmPassword.value != password.value" class="alert alert-danger col-sm-9">Passwords do not match.</div>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            Already have an account? <a routerLink="/login"> Log in</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,95 @@
+
+<div class="canvas-container">
+    <canvas class="cv" id="lineChart">{{lineChart}}</canvas>
+    <canvas class="cv" id="barChart">{{barChart}}</canvas>
+</div>
+
+<div class="container">
+    <a [href]="url" target="_blank">Accounts</a>
+</div>
+
+<div class="container">
+    <form #museumForm="ngForm" (ngSubmit)="onSubmit(museumForm)" >
+        <div class="mb-3">
+            <label for="firstName" class="col-sm-3 control-label">Name</label>
+            <div class="col-sm-9">
+                <input type="text" id="name" name="name" placeholder="First Name" class="form-control" autofocus ngModel>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="col-sm-3 control-label">Address</label>
+            <div class="col-sm-9">
+                <input type="text" id="address" name="address" placeholder="address;" class="form-control" autofocus ngModel>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="col-sm-3 control-label">Phone Number</label>
+            <div class="col-sm-9">
+                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="phoneNumber" class="form-control" autofocus ngModel>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="col-sm-3 control-label">Country</label>
+            <div class="col-sm-9">
+                <select class="form-select" aria-label="select country" ngModel name="country" (change)="onSelectedCountry($event)">
+                    <option *ngFor="let country of this.countries" [value]="country.cca2">
+                        {{country.name.common}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="col-sm-3 control-label">Region</label>
+            <div class="col-sm-9">
+                <select class="form-select" aria-label="select region" (change)="onSelectedRegion($event)">
+                    <option *ngFor="let region of this.regions" [value]="region.region">
+                        {{region.region}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="lastName" class="col-sm-3 control-label">City</label>
+            <div class="col-sm-9">
+                <select class="form-select" aria-label="select city" ngModel name="city" (change)="onSelectedCity($event)">
+                    <option *ngFor="let city of this.cities" [value]="city.city">
+                        {{city.city}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="type" class="col-sm-3 control-label">Type</label>
+            <div class="col-sm-9">
+                <input type="text" id="type" name="type" placeholder="Type" class="form-control" ngModel>
+            </div>
+        </div>
+        
+
+        <div id="map"></div>
+
+        <div class="mb-3">
+            <label for="lastName" class="col-sm-3 control-label">Longitude</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="longitude" id="longitude" name="longitude" readonly placeholder="longitude" class="form-control" autofocus ngModel>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="col-sm-3 control-label">Latitude</label>
+            <div class="col-sm-9">
+                <input type="text" [(ngModel)]="latitude" id="latitude" name="latitude" readonly placeholder="latitude" class="form-control" autofocus ngModel>
+            </div>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </div>
+    </form>
+</div>
+
+<app-reservation> </app-reservation>

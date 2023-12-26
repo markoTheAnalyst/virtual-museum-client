@@ -1,0 +1,44 @@
+<div class="container">
+    <form #museumForm="ngForm" (ngSubmit)="onSubmit(museumForm)">
+        <div class="mb-3 row">
+            <label for="startingTime" class="col-sm-2 col-form-label">Starting time</label>
+            <div class="col-sm-4">
+                <input type="datetime-local" id="startingTime" name="startingTime" ngModel class="form-control">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="duration" class="col-sm-2 col-form-label">Duration</label>
+            <div class="col-sm-4">
+                <input type="number" id="duration" name="duration" ngModel class="form-control">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="lastName" class="col-sm-3 control-label">Museum</label>
+                <div class="col-sm-4">
+                    <select class="form-select" aria-label="select city" ngModel name="museum">
+                        <option *ngFor="let museum of this.museums" [value]="museum.museumId">
+                            {{museum.name}}
+                        </option>
+                    </select>
+                </div>
+        </div>
+        <input type="submit" class="btn btn-primary btn-block">
+    </form>
+    
+    
+    <form #tourForm="ngForm" (ngSubmit)="onTourSubmit(fileUpload, video)">
+        <div class="mb-3 row">
+            <label for="fileupload" class="col-sm-2 col-form-label">Select images</label>
+            <div class="col-sm-4">
+                <input id="fileupload" class="form-control" type="file" name="fileupload" multiple #fileUpload/>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="video" class="col-sm-2 col-form-label">Select video</label>
+            <div class="col-sm-4">
+                <input id="video" type="text" name="video" #video/>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary btn-block">
+    </form>
+</div>

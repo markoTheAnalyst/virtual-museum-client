@@ -1,0 +1,16 @@
+<br><br>
+<div class="row">
+  <div class="col-sm-3" *ngFor="let visit of visits">
+  <div class="card"  >
+    <div class="card-body"  >
+      <h3 class="card-title">{{ visit.museumName }}</h3>
+      <p class="card-text">Starts at: {{ visit.startingTime | date: 'medium'}} <br>
+        Ends at: {{ visit.endingTime | date: 'medium'}}</p>
+      <a [routerLink]="['/gallery', visit.museum]" [state]="{endingTime: visit.endingTime, startingTime: visit.startingTime}" class="btn btn-primary">Start Visit</a>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+

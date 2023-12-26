@@ -1,0 +1,20 @@
+#card {
+    text-decoration: none;
+    color: black;
+}
+
+.date{
+
+    float: right;
+    font-size: 0.8em;
+}
+
+.scroll {
+
+    
+    height: 310px;
+    
+    width: 20rem;  
+    
+    overflow-y: scroll;
+}

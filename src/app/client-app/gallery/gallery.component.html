@@ -1,0 +1,23 @@
+<!-- Slideshow container -->
+<div class="slideshow-container" [hidden]="!show">
+
+  <div class="mySlides fade" *ngFor="let image of images; let i = index; first as isFirst;"
+      [class.firstSlide]="isFirst" >
+    <div class="numbertext">{{i+1}} / {{images.length}}</div>
+    <img src="{{url + image}}" width="560" height="515" style="width:100%">
+  </div>
+
+    <div class="mySlides fade">
+        <iframe width="560" height="515" [src]='videoURL()' style="width:100%"></iframe>
+    </div>
+  
+    <!-- Next and previous buttons -->
+    <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+    <a class="next" (click)="plusSlides(1)">&#10095;</a>
+  </div>
+  <br>
+
+  <div style="text-align:center" [hidden]="!show">
+    <span class="dot" (click)="currentSlide(1)"></span>
+    <span class="dot" *ngFor="let image of images; let i = index; last as isLast;" (click)="currentSlide(i+2)"></span>
+  </div>

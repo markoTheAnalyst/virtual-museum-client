@@ -1,0 +1,13 @@
+<div class="container">
+    <h2>Museums</h2>
+    <p>Type something in the input field to search the list for specific items:</p>  
+    <input #searchInput class="form-control" id="myInput" type="text" placeholder="Search.." (keyup)="search(searchInput.value)">
+    <br>
+    <div class="list-group" id="myList">
+      <a [routerLink]="[museum.museumId]" class="list-group-item list-group-item-action" *ngFor="let museum of this.filteredMuseums">
+          {{ museum.name }}
+      </a>
+
+    </div>  
+    <br><br>
+</div>
